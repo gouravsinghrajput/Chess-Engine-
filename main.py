@@ -18,7 +18,7 @@ def load_images():
 
 
 def draw_board(screen):
-    colors = [pg.Color("white"), pg.Color("gray")]
+    colors = [pg.Color("white"), pg.Color("dark gray")]
 
     for row in range(DIMENSIONS):
         for col in range(DIMENSIONS):
