@@ -42,8 +42,40 @@ def draw_pieces(screen, board):
 
                 screen.blit(
                     IMAGES[piece],
-                    col * SQ_SIZE, row * SQ_SIZE
+                    (col * SQ_SIZE, row * SQ_SIZE)
                 )
-
                 
+def main():
     
+    pg.init()
+
+    clock = pg.time.Clock()
+
+    screen = pg.display.set_mode((WIDTH, HEIGHT))
+
+    board = Board()
+
+    load_images()
+
+    running = True 
+
+    while running:
+
+        for event in pg.event.get():
+
+            if event.type == pg.QUIT:
+                running = False 
+
+        draw_board(screen)
+
+        draw_pieces(screen, board.board)
+
+        pg.display.flip()
+
+        clock.tick(60)
+
+    pg.quit()
+
+
+if __name__ == "__main__":
+    main()
