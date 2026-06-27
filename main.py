@@ -17,3 +17,5 @@ def load_images():
         IMAGES[piece] = pg.transform.scale(IMAGES[piece], (SQ_SIZE, SQ_SIZE))
 
 
+def draw_board():
+    
