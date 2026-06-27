@@ -17,5 +17,33 @@ def load_images():
         IMAGES[piece] = pg.transform.scale(IMAGES[piece], (SQ_SIZE, SQ_SIZE))
 
 
-def draw_board():
+def draw_board(screen):
+    colors = [pg.Color("white"), pg.Color("dark gray")]
+
+    for row in range(8):
+        for col in range(8):
+
+            color = colors[(row + col) % 2]
+
+            pg.draw.rect(
+                screen,  
+                color,
+                (col * SQ_SIZE, row * SQ_SIZE, SQ_SIZE, SQ_SIZE)
+            )
+
+def draw_pieces(screen, board):
+    
+    for row in range(8):
+        for col in range(8):
+
+            piece = board[row][col]
+
+            if piece != "--":
+
+                screen.blit(
+                    IMAGES[piece],
+                    col * SQ_SIZE, row * SQ_SIZE
+                )
+
+                
     
