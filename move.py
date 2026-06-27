@@ -1,46 +1,30 @@
-from main import main
-from board import Board
-from board import Position
-import pygame as pg 
+class Move:
+    
+    def __init__(self, board):
+        self.board = board
+        self.selected_piece = None
+        self.piece_position = None 
 
-DIMENSIONS = 8 
-WIDTH = HEIGHT = 512 
-SQ_SIZE = WIDTH // DIMENSIONS 
 
-board = Board()
 
-main()
+    def move_piece(self, row, col):
 
-selected_piece = None
-piece_position = None 
+        if self.selected_piece is None:
 
-for event in pg.event.get():
+            self.selected_piece = self.board.board[row][col]
 
-    if event.type == pg.MOUSEBUTTONDOWN:
-
-        x, y = pg.mouse.get_pos()
-
-        row = x // SQ_SIZE
-        col = y // SQ_SIZE
-
-        # square = (row, col)
-
-        if selected_piece is None:
-
-            selected_piece = board[row][col]
-
-            piece_position = (row, col)
+            self.piece_position = (row, col)
 
 
         else:
 
             new_position = (row, col)
 
-            board[piece_position[0]][piece_position[1]] = "--"
+            self.board.board[self.piece_position[0]][self.piece_position[1]] = "--"
 
-            board[new_position[0]][new_position[1]] = selected_piece
+            self.board.board[new_position[0]][new_position[1]] = self.selected_piece
 
-            selected_piece = None 
-            piece_position = None
+            self.selected_piece = None 
+            self.piece_position = None         
 
 
