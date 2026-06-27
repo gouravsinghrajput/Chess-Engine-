@@ -3,6 +3,11 @@
 import pygame as pg 
 import numpy as np 
 from board import Board 
+from move import Move
+
+board = Board()
+move = Move(board)
+
 
 WIDTH = HEIGHT = 512
 DIMENSIONS = 8 
@@ -53,7 +58,7 @@ def main():
 
     screen = pg.display.set_mode((WIDTH, HEIGHT))
 
-    board = Board()
+    # board = Board()
 
     load_images()
 
@@ -65,6 +70,16 @@ def main():
 
             if event.type == pg.QUIT:
                 running = False 
+
+
+            if event.type == pg.MOUSEBUTTONDOWN:
+
+                x, y = pg.mouse.get_pos()
+
+                col = x // SQ_SIZE
+                row = y // SQ_SIZE
+                
+                move.move_piece(row, col)
 
         draw_board(screen)
 
